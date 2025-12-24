@@ -1,0 +1,239 @@
+/* ===== GLOBAL ===== */
+body {
+  background: #0b0f1a;
+  color: #fff;
+  font-family: Inter, sans-serif;
+}
+
+/* Global motion refinement */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus states (keyboard accessibility) */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* ===== TOP BAR ===== */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #020617, #020617cc);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.top-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* ===== PILL BUTTONS ===== */
+.pill-btn {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  color: #e5e7eb;
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: all 0.25s ease;
+}
+
+.pill-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  box-shadow: 0 0 18px rgba(59,130,246,0.35);
+}
+
+.pill-btn:active {
+  transform: scale(0.96);
+}
+
+.pill-btn.danger:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  box-shadow: 0 0 18px rgba(220,38,38,0.45);
+}
+
+/* ===== PROFILE CARD ===== */
+.profile-card {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #151a2e, #0f1324);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 16px;
+  gap: 16px;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  background: #2563eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+/* ===== FILE LIST ===== */
+.files-container {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.file-card {
+  background: linear-gradient(135deg, #0f172a, #020617);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 16px 18px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  animation: fadeUp 0.45s ease;
+}
+
+.file-card:hover {
+  transform: translateY(-6px) scale(1.015);
+  background: linear-gradient(135deg, #111827, #020617);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.65);
+  border-color: rgba(59,130,246,0.35);
+}
+
+/* ===== FILE INFO ===== */
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.file-info strong {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ===== LANGUAGE BADGE ===== */
+.lang {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(59,130,246,0.15);
+  color: #93c5fd;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ===== DELETE BUTTON ===== */
+.delete-btn {
+  background: rgba(220, 38, 38, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(220,38,38,0.4);
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+  color: white;
+  transform: scale(1.05);
+}
+
+.delete-btn:active {
+  transform: scale(0.92);
+}
+
+/* ===== EMPTY STATE ===== */
+.empty {
+  text-align: center;
+  margin-top: 40px;
+  color: #9ca3af;
+  font-size: 14px;
+  animation: fadeUp 0.6s ease;
+}
+
+/* ===== MODAL ===== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeUp 0.25s ease;
+  cursor: pointer;
+}
+
+.modal {
+  background: #020617;
+  padding: 20px;
+  width: 300px;
+  border-radius: 14px;
+  animation: scaleIn 0.35s ease;
+  cursor: default;
+}
+
+.modal input,
+.modal select {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

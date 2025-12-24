@@ -1,0 +1,262 @@
+.editor-page {
+  background: #0b0f1a;
+  min-height: 100vh;
+  color: #fff;
+}
+
+/* ===== TOP BAR ===== */
+.editor-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #020617, #020617cc);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.editor-left .brand {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.editor-left .subtitle {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-left: 8px;
+}
+
+.editor-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ===== MAIN LAYOUT (FIXED SPLIT) ===== */
+.editor-main {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  height: calc(100vh - 64px); /* top bar height */
+  box-sizing: border-box;
+}
+
+/* ===== PANELS (50 / 50) ===== */
+.editor-panel,
+.output-panel {
+  flex: 1;
+  min-width: 0; /* 🔥 REQUIRED for flex layouts */
+  background: linear-gradient(135deg, #0f172a, #020617);
+  border-radius: 16px;
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== EDITOR PANEL ===== */
+.editor-panel {
+  gap: 10px;
+}
+
+/* Title */
+.title-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #f9fafb;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+}
+
+.title-input::placeholder {
+  color: #9ca3af;
+}
+
+.title-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: rgba(37,99,235,0.08);
+}
+
+/* Monaco editor fill */
+.editor-panel .monaco-editor {
+  flex: 1;
+  min-height: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Editor scrollbar */
+.editor-panel ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.editor-panel ::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15);
+  border-radius: 6px;
+}
+
+.editor-panel:hover {
+  border-color: rgba(59,130,246,0.25);
+}
+
+/* stdin */
+.stdin-toggle {
+  font-size: 13px;
+  color: #d1d5db;
+  flex-shrink: 0;
+}
+
+.editor-panel textarea {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #f9fafb;
+  border-radius: 8px;
+  padding: 10px;
+  resize: vertical;
+}
+
+.editor-panel textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* ===== OUTPUT PANEL ===== */
+.output-header {
+  font-size: 14px;
+  color: #9ca3af;
+  margin-bottom: 10px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.output-content {
+  flex: 1;
+  overflow-y: auto;
+  background: rgba(0,0,0,0.35);
+  border-radius: 12px;
+  padding: 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  color: #e5e7eb;
+  white-space: pre-wrap;
+}
+
+/* Empty output */
+.output-content:empty::before {
+  content: "Run your code to see the output here...";
+  color: #6b7280;
+  display: block;
+  text-align: center;
+  margin-top: 40%;
+  font-style: italic;
+}
+
+/* Error output */
+.output-error {
+  border: 1px solid rgba(220,38,38,0.5);
+  box-shadow: 0 0 24px rgba(220,38,38,0.25);
+  color: #fecaca;
+}
+
+/* Output scrollbar */
+.output-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.output-content::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15);
+  border-radius: 6px;
+}
+
+.output-panel:hover {
+  border-color: rgba(59,130,246,0.25);
+}
+
+/* ===== BUTTONS ===== */
+.run-btn {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border: none;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 18px rgba(37,99,235,0.4);
+}
+
+.run-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(37,99,235,0.6);
+}
+
+.run-btn:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.run-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Run animation */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 rgba(37,99,235,0.6); }
+  50% { box-shadow: 0 0 20px rgba(37,99,235,0.8); }
+  100% { box-shadow: 0 0 0 rgba(37,99,235,0.6); }
+}
+
+.run-btn.running {
+  animation: pulse 1.2s infinite;
+}
+
+/* Icon buttons */
+.icon-btn {
+  background: rgba(255,255,255,0.08);
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  background: rgba(255,255,255,0.15);
+  transform: scale(1.05);
+}
+
+.icon-btn:active {
+  transform: scale(0.95);
+}
+
+/* Language select */
+.editor-actions select {
+  background: linear-gradient(135deg, #020617, #020617cc);
+  color: #e5e7eb;
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.editor-actions select option {
+  background: #020617;
+  color: #e5e7eb;
+}
+
+/* Status */
+.status-text {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #9ca3af;
+}

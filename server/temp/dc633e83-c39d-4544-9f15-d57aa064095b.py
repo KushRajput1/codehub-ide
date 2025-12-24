@@ -1,0 +1,6 @@
+print("Hello world!")
+a = input("Enter your name: ")
+print(a)
+
+while True:
+    input()
